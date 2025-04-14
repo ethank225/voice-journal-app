@@ -116,15 +116,6 @@ export function FileUploader({ onFileContent, className = "" }: FileUploaderProp
         </div>
       )}
 
-      {filePreview && (
-        <div className="mt-2">
-          <Label>Preview</Label>
-          <div className="p-3 bg-muted rounded-md mt-1 text-sm max-h-32 overflow-y-auto">
-            {filePreview.substring(0, 300)}
-            {filePreview.length > 300 && "..."}
-          </div>
-        </div>
-      )}
     </div>
   )
 }
