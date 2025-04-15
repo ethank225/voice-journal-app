@@ -2,19 +2,36 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function POST(req: NextRequest) {
-  const { text } = await req.json()
+  const { text, name, progressInfo, fileName } = await req.json()
+
 
   const prompt = `
-  You are a thoughtful assistant designed to generate reflective prompts. Based on the following project guideline, write 3 concise and insightful journaling questions. Each question should be specific to the project's goals, deliverables, and scope. The prompts should be open-ended, encourage self-reflection, and help someone track their progress, challenges, and impact throughout the project.
+  You are a thoughtful assistant designed to generate reflective prompts that vary in tone, structure, and focus. Based on the following user details and project context, write 3 concise and insightful journaling questions. Each question should be specific to the project's goals, deliverables, and scope.
 
+  User Name: ${name}
+  Project Source: ${fileName}
   Project Guideline:
   """${text}"""
+  ${progressInfo ? `
+  Current Progress:
+  """${progressInfo}"""
+  Focus on this progress when writing prompts. Emphasize reflecting on the challenges, learnings, or milestones the user has experienced so far.
+  ` : `
+  No specific progress has been provided. Write prompts to encourage reflection on goals, planning, and early intentions.
+  `}
+
+  Requirements:
+  - The prompts must be open-ended and reflective.
+  - Each question should focus on a different angle (e.g., emotional insight, technical challenge, unexpected learning, long-term impact).
+  - Vary the **style** and **structure** of each prompt. Mix direct, hypothetical, and exploratory tones.
+  - **Intentionally mix up the order**—do not list similar types of prompts in sequence.
 
   Output:
   1.
   2.
   3.
-  `
+  `;
+
 
   const response = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
@@ -24,7 +41,7 @@ export async function POST(req: NextRequest) {
       'anthropic-version': '2023-06-01',
     },
     body: JSON.stringify({
-      model: 'claude-3-haiku-20240307', // or 'sonnet', 'opus'
+      model: 'claude-3-7-sonnet-20250219', // or 'sonnet', 'opus'
       max_tokens: 300,
       messages: [{ role: 'user', content: prompt }],
     }),

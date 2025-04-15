@@ -35,7 +35,13 @@ export default function JournalPage() {
   const [prompts, setPrompts] = useState<string[]>([])
   const [selectedPromptIndex, setSelectedPromptIndex] = useState(0)
   const [analysis, setAnalysis] = useState<{ sentiment: string; topics: string[] } | null>(null)
-  const [userData, setUserData] = useState<{ name: string; projectInfo: string } | null>(null)
+
+  const [userData, setUserData] = useState<{
+    name: string
+    projectInfo: string
+    progressInfo?: string
+    fileName?: string
+  } | null>(null)
 
   useEffect(() => {
     const storedUserData = localStorage.getItem("userData")
@@ -55,18 +61,28 @@ export default function JournalPage() {
       // First time: auto-generate prompts
       ;(async () => {
         setIsGeneratingPrompts(true)
-        const generatedPrompts = await generatePromptsFromText(parsedUserData.projectInfo)
+        const generatedPrompts = await generatePromptsFromText({
+          text: parsedUserData.projectInfo,
+          name: parsedUserData.name,
+          progressInfo: parsedUserData.progressInfo || "",
+          fileName: parsedUserData.fileName || "",
+        })
         setPrompts(generatedPrompts)
         sessionStorage.setItem("prompts", JSON.stringify(generatedPrompts))
         setIsGeneratingPrompts(false)
       })()
     }
-  }, [router])
+  }, [router, generatePromptsFromText])
 
   const handleGeneratePrompts = async () => {
     if (!userData) return
     setIsGeneratingPrompts(true)
-    const generatedPrompts = await generatePromptsFromText(userData.projectInfo)
+    const generatedPrompts = await generatePromptsFromText({
+      text: userData.projectInfo,
+      name: userData.name,
+      progressInfo: userData.progressInfo || "",
+      fileName: userData.fileName || "",
+    })
     setPrompts(generatedPrompts)
     setSelectedPromptIndex(0)
     sessionStorage.setItem("prompts", JSON.stringify(generatedPrompts))
