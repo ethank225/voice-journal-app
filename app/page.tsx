@@ -16,7 +16,7 @@ export default function LandingPage() {
     router.push("/onboarding");
   };
 
- 
+
 
   return (
     <div className="relative w-full h-[calc(100vh-4rem)] overflow-hidden bg-gradient-to-b from-slate-900 to-slate-800">
@@ -28,7 +28,7 @@ export default function LandingPage() {
           transition={{ duration: 0.8 }}
         >
           <h1
-            onClick={handleLogoHomeClick}
+            onClick={handleGetStartedClick}
             className="text-6xl md:text-8xl font-bold text-white tracking-tight cursor-pointer transition-transform hover:scale-105"
           >
             Journalyze

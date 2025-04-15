@@ -53,7 +53,8 @@ export default function JournalPage() {
     const parsedUserData = JSON.parse(storedUserData)
     setUserData(parsedUserData)
 
-    const storedPrompts = sessionStorage.getItem("prompts")
+    const storedPrompts = localStorage.getItem("prompts")
+    // console.log('storedPrompts', storedPrompts)
     if (storedPrompts) {
       const parsedPrompts = JSON.parse(storedPrompts)
       setPrompts(parsedPrompts)
@@ -68,7 +69,7 @@ export default function JournalPage() {
           fileName: parsedUserData.fileName || "",
         })
         setPrompts(generatedPrompts)
-        sessionStorage.setItem("prompts", JSON.stringify(generatedPrompts))
+        localStorage.setItem("prompts", JSON.stringify(generatedPrompts))
         setIsGeneratingPrompts(false)
       })()
     }
@@ -85,7 +86,7 @@ export default function JournalPage() {
     })
     setPrompts(generatedPrompts)
     setSelectedPromptIndex(0)
-    sessionStorage.setItem("prompts", JSON.stringify(generatedPrompts))
+    localStorage.setItem("prompts", JSON.stringify(generatedPrompts))
     setIsGeneratingPrompts(false)
   }
 
@@ -134,12 +135,12 @@ export default function JournalPage() {
       <Card className="mb-6">
         <CardHeader>
           <CardTitle>Journalyze</CardTitle>
-          <CardDescription>Record your thoughts about today's prompt</CardDescription>
+          <CardDescription>Record your thoughts about today's prompts</CardDescription>
         </CardHeader>
         <CardContent>
           {userData && (
             <div className="flex justify-between items-center mb-4">
-              <span className="text-sm text-muted-foreground">Today's prompt</span>
+              <span className="text-sm text-muted-foreground">Today's prompts</span>
               <Button
                 variant="outline"
                 size="sm"

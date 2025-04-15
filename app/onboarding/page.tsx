@@ -23,6 +23,8 @@ import {
   PencilIcon,
 } from "lucide-react";
 import { FileUploader } from "@/components/file-uploader";
+import { usePromptGenerator } from "@/hooks/use-prompt-generator"
+
 
 export default function OnboardingPage() {
   const router = useRouter();
@@ -35,6 +37,8 @@ export default function OnboardingPage() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { generatePromptsFromText } = usePromptGenerator()
+
 
   useEffect(() => {
     const userData = localStorage.getItem("userData");
@@ -89,7 +93,6 @@ export default function OnboardingPage() {
   const handleSubmit = async () => {
     if (!name || !projectInfo) return;
     setIsSubmitting(true);
-
     const userData = {
       name,
       projectInfo,
@@ -98,18 +101,19 @@ export default function OnboardingPage() {
     };
 
     localStorage.setItem("userData", JSON.stringify(userData));
-
+    //FIX THIS ASAP
     try {
-      const res = await fetch("/api/generatePrompts", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ projectInfo }),
-      });
+      const generatedPrompts = await generatePromptsFromText({
+        text: projectInfo,
+        name: name,
+        progressInfo: progressInfo || "",
+        fileName: fileName || "",
+      })
 
-      if (!res.ok) throw new Error("Failed to generate prompts");
+      // if (!res.ok) throw new Error("Failed to generate prompts");
 
-      const { prompts } = await res.json();
-      localStorage.setItem("prompts", JSON.stringify(prompts));
+      // const { prompts } = await res.json();
+      localStorage.setItem("prompts", JSON.stringify(generatedPrompts));
 
       router.push("/journal");
     } catch (error) {
