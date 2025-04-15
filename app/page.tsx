@@ -1,319 +1,148 @@
 "use client";
 
-import type React from "react";
-import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import {
-  ChevronDownIcon,
-  ChevronUpIcon,
-  InfoIcon,
-  Loader2,
-  PencilIcon,
-} from "lucide-react";
-import { FileUploader } from "@/components/file-uploader";
-import LoadingPage from "@/components/loading-page";
+import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 
-export default function OnboardingPage() {
+export default function LandingPage() {
   const router = useRouter();
-  const [name, setName] = useState("");
-  const [projectInfo, setProjectInfo] = useState("");
-  const [progressInfo, setProgressInfo] = useState("");
-  const [fileName, setFileName] = useState("");
-  const [isComplete, setIsComplete] = useState(false);
-  const [isProcessingFile, setIsProcessingFile] = useState(false);
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [isEditing, setIsEditing] = useState(false);
-  const [showLoading, setShowLoading] = useState(false);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  const handleLogoHomeClick = () => {
+    router.push("/");
+  };
+
+  const handleGetStartedClick = () => {
+    router.push("/onboarding");
+  };
 
   useEffect(() => {
-    const userData = localStorage.getItem("userData");
-    if (userData) {
-      const parsedData = JSON.parse(userData);
-      if (parsedData.name && parsedData.projectInfo) {
-        setIsComplete(true);
-        setName(parsedData.name);
-        setProjectInfo(parsedData.projectInfo);
-        setProgressInfo(parsedData.progressInfo || "");
-        if (parsedData.fileName) {
-          setFileName(parsedData.fileName);
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const setCanvasDimensions = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+
+    setCanvasDimensions();
+    window.addEventListener("resize", setCanvasDimensions);
+
+    class Particle {
+      x: number;
+      y: number;
+      size: number;
+      speedX: number;
+      speedY: number;
+      color: string;
+
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 3 + 1;
+        this.speedX = (Math.random() - 0.5) * 0.5;
+        this.speedY = (Math.random() - 0.5) * 0.5;
+        this.color = `rgba(62, 152, 199, ${Math.random() * 0.5 + 0.1})`;
+      }
+
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x > canvas.width || this.x < 0) this.speedX = -this.speedX;
+        if (this.y > canvas.height || this.y < 0) this.speedY = -this.speedY;
+      }
+
+      draw() {
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    const particles: Particle[] = [];
+    for (let i = 0; i < 100; i++) particles.push(new Particle());
+
+    function connectParticles() {
+      const maxDistance = 150;
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < maxDistance) {
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(62, 152, 199, ${0.2 * (1 - distance / maxDistance)})`;
+            ctx.lineWidth = 0.5;
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
         }
       }
     }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      connectParticles();
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+
+    return () => {
+      window.removeEventListener("resize", setCanvasDimensions);
+    };
   }, []);
 
-  const handleFileContent = async (content: string, name: string) => {
-    try {
-      setIsProcessingFile(true);
-      const res = await fetch("/api/processFile", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text: content }),
-      });
-
-      if (!res.ok) throw new Error("Claude API failed");
-
-      const data = await res.json();
-      const cleaned = data.cleanedText || content;
-
-      setProjectInfo(cleaned);
-      setFileName(name);
-    } catch (err) {
-      console.error("Failed to process file with Claude:", err);
-      setProjectInfo(content);
-      setFileName(name);
-    } finally {
-      setIsProcessingFile(false);
-    }
-  };
-
-  const handleManualInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setProjectInfo(e.target.value);
-    setFileName("");
-  };
-
-  const handleProgressInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setProgressInfo(e.target.value);
-  };
-
-  const handleSubmit = async () => {
-    if (!name || !projectInfo) return;
-
-    const userData = {
-      name,
-      projectInfo,
-      progressInfo,
-      fileName,
-    };
-
-    localStorage.setItem("userData", JSON.stringify(userData));
-    setShowLoading(true); // Show loading screen
-
-    try {
-      const res = await fetch("/api/generatePrompts", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ projectInfo }),
-      });
-
-      if (!res.ok) throw new Error("Failed to generate prompts");
-
-      const { prompts } = await res.json();
-      localStorage.setItem("prompts", JSON.stringify(prompts));
-    } catch (error) {
-      console.error("Prompt generation error:", error);
-    }
-  };
-
-  const handleReset = () => {
-    localStorage.removeItem("userData");
-    setName("");
-    setProjectInfo("");
-    setProgressInfo("");
-    setFileName("");
-    setIsComplete(false);
-    setIsEditing(false);
-    setIsExpanded(false);
-  };
-
-  const handleEdit = () => {
-    setIsEditing(true);
-    setIsExpanded(true);
-  };
-
-  const handleSaveChanges = () => {
-    localStorage.setItem(
-      "userData",
-      JSON.stringify({
-        name,
-        projectInfo,
-        progressInfo,
-        fileName,
-      })
-    );
-    setIsEditing(false);
-  };
-
-  // Show the loading screen while generating prompts
-  if (showLoading) {
-    return <LoadingPage onComplete={() => router.push("/journal")} />;
-  }
-
-  if (isComplete && !isEditing) {
-    return (
-      <Card className="max-w-md mx-auto mt-10">
-        <CardHeader>
-          <CardTitle>Welcome back, {name}!</CardTitle>
-          <CardDescription>
-            You've already completed onboarding.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <Label>Your project information</Label>
-              <Button variant="ghost" size="sm" onClick={handleEdit}>
-                <PencilIcon className="h-4 w-4 mr-1" />
-                Edit
-              </Button>
-            </div>
-            <div className="flex items-center gap-2 mt-2 p-3 bg-muted rounded-md">
-              <span className="text-sm font-medium">
-                {fileName || "Entered Manually"}
-              </span>
-            </div>
-            <div className="mt-2 text-sm text-muted-foreground">
-              <div
-                className={`whitespace-pre-wrap break-words rounded-md p-3 bg-muted text-sm text-muted-foreground ${
-                  isExpanded ? "" : "line-clamp-3"
-                }`}
-              >
-                {projectInfo}
-              </div>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setIsExpanded(!isExpanded)}
-                className="mt-1"
-              >
-                {isExpanded ? (
-                  <>
-                    <ChevronUpIcon className="h-4 w-4 mr-1" />
-                    Show Less
-                  </>
-                ) : (
-                  <>
-                    <ChevronDownIcon className="h-4 w-4 mr-1" />
-                    Show More
-                  </>
-                )}
-              </Button>
-            </div>
-
-            {progressInfo && (
-              <div className="space-y-2 mt-4">
-                <Label>Current Progress</Label>
-                <div className="mt-2 text-sm text-muted-foreground p-3 bg-muted rounded-md">
-                  {progressInfo}
-                </div>
-              </div>
-            )}
-          </div>
-        </CardContent>
-        <CardFooter className="flex justify-between">
-          <Button variant="outline" onClick={handleReset}>
-            Reset Onboarding
-          </Button>
-          <Button onClick={handleSubmit}>
-            Update Prompts
-          </Button>
-        </CardFooter>
-      </Card>
-    );
-  }
-
   return (
-    <Card className="max-w-2xl mx-auto mt-10">
-      <CardHeader>
-        <CardTitle>
-          {isEditing ? "Edit Your Information" : "Welcome to Voice Journal"}
-        </CardTitle>
-        <CardDescription>
-          {isEditing
-            ? "Update your project details and progress"
-            : "Upload your project plans or type your goals to get started."}
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-6">
-        <div className="space-y-2">
-          <Label htmlFor="name">Your Name</Label>
-          <Input
-            id="name"
-            placeholder="Enter your name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </div>
-
-        {!isEditing && <FileUploader onFileContent={handleFileContent} />}
-
-        {isProcessingFile && (
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Loader2 className="h-4 w-4 animate-spin" />
-            Processing file with Claude...
-          </div>
-        )}
-
-        {(!fileName || isEditing) && !isProcessingFile && (
-          <>
-            {!isEditing && (
-              <Alert>
-                <InfoIcon className="h-4 w-4" />
-                <AlertDescription>
-                  If you don't have a file, you can also type your project
-                  information.
-                </AlertDescription>
-              </Alert>
-            )}
-
-            <div className="space-y-2">
-              <Label htmlFor="project-info">Project Information</Label>
-              <textarea
-                id="project-info"
-                className="w-full min-h-[100px] p-3 rounded-md border border-input bg-background text-center"
-                placeholder="Enter your goals or project background..."
-                value={projectInfo}
-                onChange={handleManualInput}
-              />
-            </div>
-          </>
-        )}
-
-        <div className="space-y-2">
-          <Label htmlFor="progress-info">Current Progress (Optional)</Label>
-          <textarea
-            id="progress-info"
-            className="w-full min-h-[100px] p-3 rounded-md border border-input bg-background"
-            placeholder="Describe the current state of your project or progress made so far..."
-            value={progressInfo}
-            onChange={handleProgressInput}
-          />
-        </div>
-      </CardContent>
-      <CardFooter className="flex justify-between">
-        {isEditing ? (
-          <>
-            <Button variant="outline" onClick={() => setIsEditing(false)}>
-              Cancel
-            </Button>
-            <Button
-              onClick={handleSaveChanges}
-              disabled={!name || !projectInfo || isProcessingFile}
-            >
-              Save Changes
-            </Button>
-          </>
-        ) : (
-          <Button
-            className="w-full"
-            onClick={handleSubmit}
-            disabled={!name || !projectInfo || isProcessingFile}
+    <div className="relative w-full h-[calc(100vh-4rem)] overflow-hidden bg-gradient-to-b from-slate-900 to-slate-800">
+      <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full" />
+      <div className="relative z-10 flex flex-col items-center justify-center w-full h-full text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <h1
+            onClick={handleLogoHomeClick}
+            className="text-6xl md:text-8xl font-bold text-white tracking-tight cursor-pointer transition-transform hover:scale-105"
           >
-            Continue
-          </Button>
-        )}
-      </CardFooter>
-    </Card>
+            Journalyze
+          </h1>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+            className="mt-4 text-xl text-slate-300"
+          >
+            Track your progress. Achieve your goals.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.8, duration: 0.8 }}
+            className="mt-8"
+          >
+            <button
+              onClick={handleGetStartedClick}
+              className="px-6 py-3 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-md shadow-lg transition"
+            >
+              Get Started
+            </button>
+          </motion.div>
+        </motion.div>
+      </div>
+    </div>
   );
 }

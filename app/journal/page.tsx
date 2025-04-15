@@ -133,7 +133,7 @@ export default function JournalPage() {
     <div className="max-w-2xl mx-auto">
       <Card className="mb-6">
         <CardHeader>
-          <CardTitle>Voice Journal</CardTitle>
+          <CardTitle>Journalyze</CardTitle>
           <CardDescription>Record your thoughts about today's prompt</CardDescription>
         </CardHeader>
         <CardContent>

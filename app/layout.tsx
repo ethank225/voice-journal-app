@@ -8,7 +8,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Voice Journal",
+  title: "Journalyze",
   description: "Record your thoughts and track your mood over time",
     generator: 'v0.dev'
 }
