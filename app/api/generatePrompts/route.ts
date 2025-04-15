@@ -5,10 +5,34 @@ export async function POST(req: NextRequest) {
   const { text, name, progressInfo, fileName } = await req.json()
 
 
+  const promptTypes = [
+    {
+      label: "Emotional Insight",
+      instruction: "Ask a question that encourages ${name} to reflect on their emotional journey or motivation behind the project.",
+    },
+    {
+      label: "Technical Challenge",
+      instruction: "Pose a prompt that explores technical hurdles or implementation details related to the project's progress.",
+    },
+    {
+      label: "Unexpected Learning",
+      instruction: "Create a prompt that helps ${name} unpack any surprising discoveries or shifts in thinking.",
+    },
+    {
+      label: "Long-Term Impact",
+      instruction: "Encourage reflection on how this project might influence future work, values, or direction.",
+    }
+  ];
+
+  // Shuffle and get 3 prompt types
+  const shuffledPromptTypes = promptTypes.sort(() => 0.5 - Math.random()).slice(0, 3);
+
+  // Build the instruction string from shuffled types
+  const promptInstructions = shuffledPromptTypes.map((type, idx) => `Prompt ${idx + 1} (${type.label}): ${type.instruction}`).join("\n");
+
   const prompt = `
   You are a thoughtful assistant designed to generate reflective prompts that vary in tone, structure, and focus. Based on the following user details and project context, write 3 concise and insightful journaling questions. Each question should be specific to the project's goals, deliverables, and scope.
 
-  User Name: ${name}
   Project Source: ${fileName}
   Project Guideline:
   """${text}"""
@@ -20,17 +44,16 @@ export async function POST(req: NextRequest) {
   No specific progress has been provided. Write prompts to encourage reflection on goals, planning, and early intentions.
   `}
 
-  Requirements:
-  - The prompts must be open-ended and reflective.
-  - Each question should focus on a different angle (e.g., emotional insight, technical challenge, unexpected learning, long-term impact).
-  - Vary the **style** and **structure** of each prompt. Mix direct, hypothetical, and exploratory tones.
-  - **Intentionally mix up the order**—do not list similar types of prompts in sequence.
+  Prompt Instructions:
+  ${promptInstructions}
 
-  Output:
+  Return exactly 3 prompts.
+
   1.
   2.
   3.
   `;
+
 
 
   const response = await fetch('https://api.anthropic.com/v1/messages', {

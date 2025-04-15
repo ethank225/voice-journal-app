@@ -23,7 +23,6 @@ import {
   PencilIcon,
 } from "lucide-react";
 import { FileUploader } from "@/components/file-uploader";
-import LoadingPage from "@/components/loading-page";
 
 export default function OnboardingPage() {
   const router = useRouter();
@@ -35,7 +34,7 @@ export default function OnboardingPage() {
   const [isProcessingFile, setIsProcessingFile] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-  const [showLoading, setShowLoading] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     const userData = localStorage.getItem("userData");
@@ -89,6 +88,7 @@ export default function OnboardingPage() {
 
   const handleSubmit = async () => {
     if (!name || !projectInfo) return;
+    setIsSubmitting(true);
 
     const userData = {
       name,
@@ -98,7 +98,6 @@ export default function OnboardingPage() {
     };
 
     localStorage.setItem("userData", JSON.stringify(userData));
-    setShowLoading(true); // Show loading screen
 
     try {
       const res = await fetch("/api/generatePrompts", {
@@ -111,8 +110,12 @@ export default function OnboardingPage() {
 
       const { prompts } = await res.json();
       localStorage.setItem("prompts", JSON.stringify(prompts));
+
+      router.push("/journal");
     } catch (error) {
       console.error("Prompt generation error:", error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -144,11 +147,6 @@ export default function OnboardingPage() {
     );
     setIsEditing(false);
   };
-
-  // Show the loading screen while generating prompts
-  if (showLoading) {
-    return <LoadingPage onComplete={() => router.push("/journal")} />;
-  }
 
   if (isComplete && !isEditing) {
     return (
@@ -215,8 +213,15 @@ export default function OnboardingPage() {
           <Button variant="outline" onClick={handleReset}>
             Reset Onboarding
           </Button>
-          <Button onClick={handleSubmit}>
-            Update Prompts
+          <Button onClick={handleSubmit} disabled={isSubmitting}>
+            {isSubmitting ? (
+              <>
+                <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                Updating...
+              </>
+            ) : (
+              "Update Prompts"
+            )}
           </Button>
         </CardFooter>
       </Card>
@@ -308,9 +313,16 @@ export default function OnboardingPage() {
           <Button
             className="w-full"
             onClick={handleSubmit}
-            disabled={!name || !projectInfo || isProcessingFile}
+            disabled={!name || !projectInfo || isProcessingFile || isSubmitting}
           >
-            Continue
+            {isSubmitting ? (
+              <>
+                <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                Generating...
+              </>
+            ) : (
+              "Continue"
+            )}
           </Button>
         )}
       </CardFooter>
