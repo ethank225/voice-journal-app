@@ -54,7 +54,6 @@ export default function JournalPage() {
     setUserData(parsedUserData)
 
     const storedPrompts = localStorage.getItem("prompts")
-    // console.log('storedPrompts', storedPrompts)
     if (storedPrompts) {
       const parsedPrompts = JSON.parse(storedPrompts)
       setPrompts(parsedPrompts)
@@ -90,6 +89,7 @@ export default function JournalPage() {
     setIsGeneratingPrompts(false)
   }
 
+  // UPDATED: Call a Next.js API route that forwards audio to Flask
   const handleRecordingComplete = async (audioBlob: Blob) => {
     setError("")
     setTranscript("")
@@ -97,26 +97,41 @@ export default function JournalPage() {
     setIsLoading(true)
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500))
+      // 1. Build FormData to send to Next.js
+      const formData = new FormData()
+      // The key "audio" should match what your Next.js API expects
+      formData.append("audio", audioBlob, "recording.wav")
 
-      const mockTranscript =
-        "Today I'm feeling quite energetic and positive about my health goals. I managed to exercise three times this week and I've been eating better. I still struggle with consistency sometimes, but I'm making progress."
-      setTranscript(mockTranscript)
+      // 2. POST to /api/transcribe (your Next.js route)
+      const response = await fetch("/api/transcribe", {
+        method: "POST",
+        body: formData,
+      })
 
-      await new Promise((resolve) => setTimeout(resolve, 1000))
-
-      const mockAnalysis = {
-        sentiment: "positive",
-        topics: ["health", "exercise", "consistency", "progress"],
+      if (!response.ok) {
+        const errorText = await response.text()
+        throw new Error(`Transcription request failed: ${errorText}`)
       }
 
-      setAnalysis(mockAnalysis)
+      // 3. Parse JSON response from Next.js, which should be from Flask
+      const data = await response.json()
 
+      // Example structure from Flask:
+      // data = {
+      //   transcript: "Hello, world",
+      //   analysis: { sentiment: "positive", topics: ["health", "exercise"] }
+      // }
+
+      const { transcript, analysis } = data
+      setTranscript(transcript || "")
+      setAnalysis(analysis || null)
+
+      // 4. Save to your journal entries
       addEntry({
         prompt: prompts[selectedPromptIndex],
-        transcript: mockTranscript,
-        sentiment: mockAnalysis.sentiment,
-        topics: mockAnalysis.topics,
+        transcript: transcript || "",
+        sentiment: analysis?.sentiment ?? "",
+        topics: analysis?.topics ?? [],
       })
     } catch (err) {
       console.error("Error processing recording:", err)
@@ -171,7 +186,10 @@ export default function JournalPage() {
             <p className="text-sm text-muted-foreground mt-2">Generating thoughtful prompts...</p>
           )}
 
-          <VoiceRecorder onRecordingComplete={handleRecordingComplete} isProcessing={isLoading} />
+          <VoiceRecorder
+            onRecordingComplete={handleRecordingComplete}
+            isProcessing={isLoading}
+          />
 
           {error && (
             <Alert variant="destructive" className="mt-4">
