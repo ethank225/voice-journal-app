@@ -30,7 +30,7 @@ export default function DashboardPage() {
                 You haven't recorded any journal entries yet.
                 <a href="/journal" className="underline ml-1 font-medium">
                   Start journaling
-                </a>
+                </a>&nbsp;
                 to see your data here.
               </AlertDescription>
             </Alert>

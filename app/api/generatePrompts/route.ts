@@ -2,8 +2,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function POST(req: NextRequest) {
+  console.log("Received request to generate prompts") // <--- AND THIS
   const { text, name, progressInfo, fileName } = await req.json()
-
 
   const promptTypes = [
     {
@@ -59,7 +59,7 @@ export async function POST(req: NextRequest) {
   const response = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
     headers: {
-      'x-api-key': process.env.ANTHROPIC_API_KEY!,
+      'x-api-key': process.env.ANTHROPIC_API_KEY || '',
       'content-type': 'application/json',
       'anthropic-version': '2023-06-01',
     },
@@ -78,6 +78,7 @@ export async function POST(req: NextRequest) {
     .split('\n')
     .filter((line) => /^\d+\./.test(line))
     .map((line) => line.replace(/^\d+\.\s*/, '').trim())
+  console.log(prompts)
 
   return NextResponse.json({ prompts })
 }

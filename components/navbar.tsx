@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { useRouter, usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
-import { MicIcon, BarChart3Icon, UserIcon } from "lucide-react"
+import { MicIcon, BarChart3Icon, UserIcon, MessageSquareIcon } from "lucide-react"
 
 export function Navbar() {
   const router = useRouter()
@@ -29,6 +29,11 @@ export function Navbar() {
       href: "/dashboard",
       icon: BarChart3Icon,
     },
+    {
+      name: "Smart Search",
+      href: "/smartSearch",
+      icon: MessageSquareIcon,
+    }
   ]
 
   return (

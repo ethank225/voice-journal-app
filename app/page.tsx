@@ -40,7 +40,7 @@ export default function LandingPage() {
             transition={{ delay: 0.5, duration: 0.8 }}
             className="mt-4 text-xl text-slate-300"
           >
-            Track your progress. Achieve your goals.
+            Team transparency, made simple.
           </motion.p>
 
           <motion.div
