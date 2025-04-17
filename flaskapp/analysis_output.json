@@ -1,0 +1,481 @@
+{
+  "audio_analysis": [
+    {
+      "id": 1,
+      "transcript": "I\u2019ve really appreciated the way the team backs each other up. Even when things get tough, there\u2019s a spirit of collaboration. It makes a difference. Practice network happy career ability across play describe writer economic prove economy.",
+      "sentiment": "Supportive",
+      "mean_pitch": 207.03,
+      "pitch_variability": 78.41,
+      "mean_loudness": 0.068,
+      "speaking_rate_wps": 1.79
+    },
+    {
+      "id": 2,
+      "transcript": "I want to call out how helpful everyone\u2019s been. This is the kind of environment where people thrive, and I\u2019m grateful for that. Left attack measure government anyone consider music treatment black alone.",
+      "sentiment": "Supportive",
+      "mean_pitch": 166.74,
+      "pitch_variability": 53.4,
+      "mean_loudness": 0.0652,
+      "speaking_rate_wps": 4.18
+    },
+    {
+      "id": 3,
+      "transcript": "I\u2019ve really appreciated the way the team backs each other up. Even when things get tough, there\u2019s a spirit of collaboration. It makes a difference. Movie food store majority only beautiful focus head people without manage.",
+      "sentiment": "Supportive",
+      "mean_pitch": 256.17,
+      "pitch_variability": 73.17,
+      "mean_loudness": 0.0961,
+      "speaking_rate_wps": 3.75
+    },
+    {
+      "id": 4,
+      "transcript": "I\u2019ve really appreciated the way the team backs each other up. Even when things get tough, there\u2019s a spirit of collaboration. It makes a difference. Or try major front type together action affect special which small camera blood shoulder.",
+      "sentiment": "Supportive",
+      "mean_pitch": 167.97,
+      "pitch_variability": 74.18,
+      "mean_loudness": 0.0659,
+      "speaking_rate_wps": 2.09
+    },
+    {
+      "id": 5,
+      "transcript": "Seeing how people step up for one another has been inspiring. There\u2019s real care behind the work here, not just responsibility. Expert evidence until career cultural support performance nation two seem century yourself stay hundred fear again.",
+      "sentiment": "Supportive",
+      "mean_pitch": 251.0,
+      "pitch_variability": 53.58,
+      "mean_loudness": 0.0144,
+      "speaking_rate_wps": 3.47
+    },
+    {
+      "id": 6,
+      "transcript": "It's steady work, and that\u2019s fine by me. I don\u2019t feel particularly connected to the outcome yet. Radio field resource one here evidence business face discover left.",
+      "sentiment": "Neutral",
+      "mean_pitch": 181.05,
+      "pitch_variability": 76.08,
+      "mean_loudness": 0.0428,
+      "speaking_rate_wps": 3.72
+    },
+    {
+      "id": 7,
+      "transcript": "I hesitate before speaking up in meetings. What if my suggestion is off-base? That fear holds me back more than I\u2019d like to admit. According structure item leave side third again feeling write true.",
+      "sentiment": "Insecure",
+      "mean_pitch": 169.31,
+      "pitch_variability": 69.36,
+      "mean_loudness": 0.029,
+      "speaking_rate_wps": 2.63
+    },
+    {
+      "id": 8,
+      "transcript": "We keep running into the same obstacles without real progress. It's like we\u2019re stuck in a loop. That\u2019s starting to wear on me. Goal exist those hotel significant six result team.",
+      "sentiment": "Frustrated",
+      "mean_pitch": 117.54,
+      "pitch_variability": 71.44,
+      "mean_loudness": 0.074,
+      "speaking_rate_wps": 4.0
+    },
+    {
+      "id": 9,
+      "transcript": "It's steady work, and that\u2019s fine by me. I don\u2019t feel particularly connected to the outcome yet. Meeting property party water minute our only while apply gun its station.",
+      "sentiment": "Neutral",
+      "mean_pitch": 201.97,
+      "pitch_variability": 27.5,
+      "mean_loudness": 0.0682,
+      "speaking_rate_wps": 4.48
+    },
+    {
+      "id": 10,
+      "transcript": "Working on this project reminds me of my long-term goals. It's exciting to be part of something that could make a real difference. Each challenge is another reason I stay committed. Child amount everything situation know big speak about share sometimes network week none.",
+      "sentiment": "Motivated",
+      "mean_pitch": 294.46,
+      "pitch_variability": 64.14,
+      "mean_loudness": 0.0512,
+      "speaking_rate_wps": 4.21
+    },
+    {
+      "id": 11,
+      "transcript": "I want to call out how helpful everyone\u2019s been. This is the kind of environment where people thrive, and I\u2019m grateful for that. Face force student world office television wear idea father family take.",
+      "sentiment": "Supportive",
+      "mean_pitch": 233.88,
+      "pitch_variability": 47.41,
+      "mean_loudness": 0.0424,
+      "speaking_rate_wps": 3.97
+    },
+    {
+      "id": 12,
+      "transcript": "I hesitate before speaking up in meetings. What if my suggestion is off-base? That fear holds me back more than I\u2019d like to admit. Wife near senior take party specific miss serve generation others young still speech.",
+      "sentiment": "Insecure",
+      "mean_pitch": 227.99,
+      "pitch_variability": 27.36,
+      "mean_loudness": 0.0428,
+      "speaking_rate_wps": 2.26
+    },
+    {
+      "id": 13,
+      "transcript": "Seeing how people step up for one another has been inspiring. There\u2019s real care behind the work here, not just responsibility. Article vote such nice organization maintain personal apply able international bar.",
+      "sentiment": "Supportive",
+      "mean_pitch": 183.9,
+      "pitch_variability": 52.01,
+      "mean_loudness": 0.023,
+      "speaking_rate_wps": 1.69
+    },
+    {
+      "id": 14,
+      "transcript": "There\u2019s too much ambiguity, and it's draining. I need more clarity, or I\u2019m going to burn out. Treatment case white audience focus yes interesting describe consider I save window so camera billion cut.",
+      "sentiment": "Frustrated",
+      "mean_pitch": 165.27,
+      "pitch_variability": 22.08,
+      "mean_loudness": 0.0545,
+      "speaking_rate_wps": 4.23
+    },
+    {
+      "id": 15,
+      "transcript": "Every time we overcome a hurdle, I feel more inspired. There's a purpose behind this work that fuels my energy. I want to build something that matters. Century speak which place along statement spend.",
+      "sentiment": "Motivated",
+      "mean_pitch": 217.91,
+      "pitch_variability": 67.14,
+      "mean_loudness": 0.0751,
+      "speaking_rate_wps": 2.17
+    },
+    {
+      "id": 16,
+      "transcript": "I\u2019m still feeling things out with this project. Nothing\u2019s really stood out yet, but I\u2019m curious where it will go. Page thus task street office position soldier benefit.",
+      "sentiment": "Neutral",
+      "mean_pitch": 170.43,
+      "pitch_variability": 22.76,
+      "mean_loudness": 0.0566,
+      "speaking_rate_wps": 2.22
+    },
+    {
+      "id": 17,
+      "transcript": "There\u2019s nothing wrong, but also nothing exciting right now. I\u2019m just getting through each task as it comes. Program statement finally do eat most own character part investment foreign war.",
+      "sentiment": "Neutral",
+      "mean_pitch": 264.39,
+      "pitch_variability": 54.59,
+      "mean_loudness": 0.0824,
+      "speaking_rate_wps": 4.34
+    },
+    {
+      "id": 18,
+      "transcript": "We keep running into the same obstacles without real progress. It's like we\u2019re stuck in a loop. That\u2019s starting to wear on me. Government peace close western result happen daughter.",
+      "sentiment": "Frustrated",
+      "mean_pitch": 100.11,
+      "pitch_variability": 27.2,
+      "mean_loudness": 0.047,
+      "speaking_rate_wps": 2.93
+    },
+    {
+      "id": 19,
+      "transcript": "Sometimes I wonder if I truly belong on this team. Everyone seems to grasp things faster than I do. I\u2019m trying, but it\u2019s hard not to feel behind. Her less fill store improve low paper central.",
+      "sentiment": "Insecure",
+      "mean_pitch": 115.98,
+      "pitch_variability": 77.34,
+      "mean_loudness": 0.0967,
+      "speaking_rate_wps": 1.67
+    },
+    {
+      "id": 20,
+      "transcript": "The current approach is unsustainable. We're patching over deeper flaws and pretending everything is fine. That concerns me a lot. Ok result pretty add game debate ten mission society word image market stage nice bit would.",
+      "sentiment": "Critical",
+      "mean_pitch": 238.77,
+      "pitch_variability": 74.55,
+      "mean_loudness": 0.0267,
+      "speaking_rate_wps": 1.89
+    },
+    {
+      "id": 21,
+      "transcript": "We keep running into the same obstacles without real progress. It's like we\u2019re stuck in a loop. That\u2019s starting to wear on me. Part left first civil event bill skin data their use.",
+      "sentiment": "Frustrated",
+      "mean_pitch": 251.03,
+      "pitch_variability": 51.01,
+      "mean_loudness": 0.0947,
+      "speaking_rate_wps": 3.52
+    },
+    {
+      "id": 22,
+      "transcript": "This work connects deeply with my values. Even the small wins feel meaningful because of the bigger picture. It's the kind of project that keeps me going. Window join record Congress though quality cause tough agency low share each.",
+      "sentiment": "Motivated",
+      "mean_pitch": 276.95,
+      "pitch_variability": 59.68,
+      "mean_loudness": 0.0941,
+      "speaking_rate_wps": 3.64
+    },
+    {
+      "id": 23,
+      "transcript": "Every time we overcome a hurdle, I feel more inspired. There's a purpose behind this work that fuels my energy. I want to build something that matters. Pm people thank serious particular ground successful different message magazine position.",
+      "sentiment": "Motivated",
+      "mean_pitch": 187.8,
+      "pitch_variability": 63.89,
+      "mean_loudness": 0.0194,
+      "speaking_rate_wps": 3.22
+    },
+    {
+      "id": 24,
+      "transcript": "Sometimes I wonder if I truly belong on this team. Everyone seems to grasp things faster than I do. I\u2019m trying, but it\u2019s hard not to feel behind. Knowledge factor evidence heart less go soldier never not season door view.",
+      "sentiment": "Insecure",
+      "mean_pitch": 290.32,
+      "pitch_variability": 61.89,
+      "mean_loudness": 0.0289,
+      "speaking_rate_wps": 3.01
+    },
+    {
+      "id": 25,
+      "transcript": "I want to call out how helpful everyone\u2019s been. This is the kind of environment where people thrive, and I\u2019m grateful for that. Cut or fact foreign data game various radio special song four growth probably order.",
+      "sentiment": "Supportive",
+      "mean_pitch": 197.71,
+      "pitch_variability": 77.83,
+      "mean_loudness": 0.0413,
+      "speaking_rate_wps": 4.03
+    },
+    {
+      "id": 26,
+      "transcript": "Seeing how people step up for one another has been inspiring. There\u2019s real care behind the work here, not just responsibility. Even admit tell give question treat bit development window year report impact see.",
+      "sentiment": "Supportive",
+      "mean_pitch": 226.55,
+      "pitch_variability": 30.21,
+      "mean_loudness": 0.048,
+      "speaking_rate_wps": 4.04
+    },
+    {
+      "id": 27,
+      "transcript": "The current approach is unsustainable. We're patching over deeper flaws and pretending everything is fine. That concerns me a lot. Price cost behind door five outside story.",
+      "sentiment": "Critical",
+      "mean_pitch": 219.8,
+      "pitch_variability": 40.35,
+      "mean_loudness": 0.0134,
+      "speaking_rate_wps": 1.64
+    },
+    {
+      "id": 28,
+      "transcript": "The current approach is unsustainable. We're patching over deeper flaws and pretending everything is fine. That concerns me a lot. Full finish any simply increase treat stock of go western begin maintain.",
+      "sentiment": "Critical",
+      "mean_pitch": 137.02,
+      "pitch_variability": 50.11,
+      "mean_loudness": 0.0211,
+      "speaking_rate_wps": 3.92
+    },
+    {
+      "id": 29,
+      "transcript": "There\u2019s nothing wrong, but also nothing exciting right now. I\u2019m just getting through each task as it comes. Image military how training guess nation could main yourself adult development start where.",
+      "sentiment": "Neutral",
+      "mean_pitch": 298.29,
+      "pitch_variability": 43.13,
+      "mean_loudness": 0.0308,
+      "speaking_rate_wps": 3.2
+    },
+    {
+      "id": 30,
+      "transcript": "The current approach is unsustainable. We're patching over deeper flaws and pretending everything is fine. That concerns me a lot. Indeed most race chair at wish hot control all section drive unit possible gun financial.",
+      "sentiment": "Critical",
+      "mean_pitch": 279.71,
+      "pitch_variability": 79.64,
+      "mean_loudness": 0.0427,
+      "speaking_rate_wps": 2.87
+    },
+    {
+      "id": 31,
+      "transcript": "I\u2019ve tried to be patient, but it's hard when things keep getting pushed back. The uncertainty makes it tough to stay focused. Cold image pressure simple economy likely consumer.",
+      "sentiment": "Frustrated",
+      "mean_pitch": 116.35,
+      "pitch_variability": 64.79,
+      "mean_loudness": 0.012,
+      "speaking_rate_wps": 3.48
+    },
+    {
+      "id": 32,
+      "transcript": "Every time we overcome a hurdle, I feel more inspired. There's a purpose behind this work that fuels my energy. I want to build something that matters. Measure contain act at ball administration early tax discuss two threat court.",
+      "sentiment": "Motivated",
+      "mean_pitch": 148.61,
+      "pitch_variability": 22.72,
+      "mean_loudness": 0.0835,
+      "speaking_rate_wps": 3.92
+    },
+    {
+      "id": 33,
+      "transcript": "This work connects deeply with my values. Even the small wins feel meaningful because of the bigger picture. It's the kind of project that keeps me going. Rock shoulder million owner break stuff to rise his drop beat price environmental here.",
+      "sentiment": "Motivated",
+      "mean_pitch": 115.62,
+      "pitch_variability": 34.25,
+      "mean_loudness": 0.0714,
+      "speaking_rate_wps": 3.49
+    },
+    {
+      "id": 34,
+      "transcript": "It's steady work, and that\u2019s fine by me. I don\u2019t feel particularly connected to the outcome yet. Pattern trouble within certainly clear type suddenly church us type case leader executive professor movie.",
+      "sentiment": "Neutral",
+      "mean_pitch": 148.72,
+      "pitch_variability": 64.17,
+      "mean_loudness": 0.0829,
+      "speaking_rate_wps": 1.51
+    },
+    {
+      "id": 35,
+      "transcript": "I hesitate before speaking up in meetings. What if my suggestion is off-base? That fear holds me back more than I\u2019d like to admit. Allow various billion condition book skill old goal enter.",
+      "sentiment": "Insecure",
+      "mean_pitch": 244.43,
+      "pitch_variability": 36.85,
+      "mean_loudness": 0.089,
+      "speaking_rate_wps": 1.65
+    },
+    {
+      "id": 36,
+      "transcript": "There\u2019s nothing wrong, but also nothing exciting right now. I\u2019m just getting through each task as it comes. We time manage visit bring drop something think science management door thus dark board tend.",
+      "sentiment": "Neutral",
+      "mean_pitch": 271.19,
+      "pitch_variability": 26.56,
+      "mean_loudness": 0.0996,
+      "speaking_rate_wps": 2.62
+    },
+    {
+      "id": 37,
+      "transcript": "This is all very new to me, and I\u2019m not sure I\u2019m picking it up quickly enough. I keep questioning whether I\u2019m doing enough. Lay tree across thus focus pay word front herself television black show how its.",
+      "sentiment": "Insecure",
+      "mean_pitch": 275.82,
+      "pitch_variability": 62.85,
+      "mean_loudness": 0.0728,
+      "speaking_rate_wps": 1.57
+    },
+    {
+      "id": 38,
+      "transcript": "There\u2019s too much ambiguity, and it's draining. I need more clarity, or I\u2019m going to burn out. Discover against mother physical increase wonder discussion audience success agent.",
+      "sentiment": "Frustrated",
+      "mean_pitch": 218.46,
+      "pitch_variability": 40.38,
+      "mean_loudness": 0.034,
+      "speaking_rate_wps": 1.83
+    },
+    {
+      "id": 39,
+      "transcript": "Seeing how people step up for one another has been inspiring. There\u2019s real care behind the work here, not just responsibility. Card wish writer decide late onto meeting its forget think during letter sea family read.",
+      "sentiment": "Supportive",
+      "mean_pitch": 157.42,
+      "pitch_variability": 57.3,
+      "mean_loudness": 0.0268,
+      "speaking_rate_wps": 2.16
+    },
+    {
+      "id": 40,
+      "transcript": "It frustrates me that we\u2019re prioritizing speed over quality. We\u2019ll pay for that later, and I\u2019ve voiced this more than once already. Want street range big heavy situation bill probably local hair section price.",
+      "sentiment": "Critical",
+      "mean_pitch": 131.22,
+      "pitch_variability": 52.14,
+      "mean_loudness": 0.0659,
+      "speaking_rate_wps": 3.74
+    },
+    {
+      "id": 41,
+      "transcript": "Every time we overcome a hurdle, I feel more inspired. There's a purpose behind this work that fuels my energy. I want to build something that matters. Example wide reality whom car appear our executive.",
+      "sentiment": "Motivated",
+      "mean_pitch": 259.06,
+      "pitch_variability": 46.55,
+      "mean_loudness": 0.0983,
+      "speaking_rate_wps": 3.93
+    },
+    {
+      "id": 42,
+      "transcript": "Sometimes I wonder if I truly belong on this team. Everyone seems to grasp things faster than I do. I\u2019m trying, but it\u2019s hard not to feel behind. Order address general central tell perform dog since suddenly dog practice describe response.",
+      "sentiment": "Insecure",
+      "mean_pitch": 179.67,
+      "pitch_variability": 30.15,
+      "mean_loudness": 0.0593,
+      "speaking_rate_wps": 1.6
+    },
+    {
+      "id": 43,
+      "transcript": "I\u2019ve tried to be patient, but it's hard when things keep getting pushed back. The uncertainty makes it tough to stay focused. Movie even light bag them lay week none customer air end especially card.",
+      "sentiment": "Frustrated",
+      "mean_pitch": 269.08,
+      "pitch_variability": 24.91,
+      "mean_loudness": 0.0206,
+      "speaking_rate_wps": 4.44
+    },
+    {
+      "id": 44,
+      "transcript": "The current approach is unsustainable. We're patching over deeper flaws and pretending everything is fine. That concerns me a lot. Let feel responsibility think huge wind today collection.",
+      "sentiment": "Critical",
+      "mean_pitch": 114.48,
+      "pitch_variability": 41.48,
+      "mean_loudness": 0.0163,
+      "speaking_rate_wps": 2.0
+    },
+    {
+      "id": 45,
+      "transcript": "Seeing how people step up for one another has been inspiring. There\u2019s real care behind the work here, not just responsibility. Our hold sit statement administration key here sound.",
+      "sentiment": "Supportive",
+      "mean_pitch": 148.64,
+      "pitch_variability": 61.99,
+      "mean_loudness": 0.093,
+      "speaking_rate_wps": 3.47
+    },
+    {
+      "id": 46,
+      "transcript": "This work connects deeply with my values. Even the small wins feel meaningful because of the bigger picture. It's the kind of project that keeps me going. Executive strategy movement win exist he hear enough drug.",
+      "sentiment": "Motivated",
+      "mean_pitch": 199.04,
+      "pitch_variability": 39.92,
+      "mean_loudness": 0.0802,
+      "speaking_rate_wps": 3.27
+    },
+    {
+      "id": 47,
+      "transcript": "I\u2019ve tried to be patient, but it's hard when things keep getting pushed back. The uncertainty makes it tough to stay focused. Edge despite movie wish apply force minute now include certain huge.",
+      "sentiment": "Frustrated",
+      "mean_pitch": 205.04,
+      "pitch_variability": 39.96,
+      "mean_loudness": 0.015,
+      "speaking_rate_wps": 3.18
+    },
+    {
+      "id": 48,
+      "transcript": "Seeing how people step up for one another has been inspiring. There\u2019s real care behind the work here, not just responsibility. Rather investment first prevent share goal rate draw mean tax state positive that difference account like.",
+      "sentiment": "Supportive",
+      "mean_pitch": 252.58,
+      "pitch_variability": 36.98,
+      "mean_loudness": 0.0756,
+      "speaking_rate_wps": 3.98
+    },
+    {
+      "id": 49,
+      "transcript": "This work connects deeply with my values. Even the small wins feel meaningful because of the bigger picture. It's the kind of project that keeps me going. There over expert strategy station him value.",
+      "sentiment": "Motivated",
+      "mean_pitch": 214.04,
+      "pitch_variability": 22.38,
+      "mean_loudness": 0.0157,
+      "speaking_rate_wps": 2.86
+    },
+    {
+      "id": 50,
+      "transcript": "I\u2019m still feeling things out with this project. Nothing\u2019s really stood out yet, but I\u2019m curious where it will go. Something instead mind field court describe official sing bank group box.",
+      "sentiment": "Neutral",
+      "mean_pitch": 250.34,
+      "pitch_variability": 41.15,
+      "mean_loudness": 0.0705,
+      "speaking_rate_wps": 4.3
+    },
+    {
+      "id": 51,
+      "transcript": " Test test test test test test test",
+      "sentiment": "Neutral",
+      "mean_pitch": 1698.5400390625,
+      "pitch_variability": 1665.9000244140625,
+      "mean_loudness": 0.0276,
+      "speaking_rate_wps": 1.67
+    },
+    {
+      "id": 52,
+      "transcript": "",
+      "sentiment": "Neutral",
+      "mean_pitch": 245.1300048828125,
+      "pitch_variability": 230.63999938964844,
+      "mean_loudness": 0.0028,
+      "speaking_rate_wps": 0.0
+    },
+    {
+      "id": 53,
+      "transcript": " So when I work with a lot of students I've noticed that a lot of them don't even really think about parks that much or the impact of parks in their lives and I've been doing is trying to educate them more about the impact of parks and communities and things like that.",
+      "sentiment": "Neutral",
+      "mean_pitch": 532.1799926757812,
+      "pitch_variability": 624.280029296875,
+      "mean_loudness": 0.0515,
+      "speaking_rate_wps": 3.96
+    }
+  ]
+}

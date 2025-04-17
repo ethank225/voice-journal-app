@@ -40,8 +40,6 @@ export default function TranscriptTile({ transcript }: TranscriptTileProps) {
         return "bg-teal-100 text-teal-800 border-teal-200";
       case "insecure":
         return "bg-purple-100 text-purple-800 border-purple-200";
-      case "critical":
-        return "bg-rose-100 text-rose-800 border-rose-200";
       default:
         return "bg-gray-100 text-gray-800 border-gray-200";
     }
